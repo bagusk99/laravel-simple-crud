@@ -14,15 +14,21 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($example as $row)
-              <td>{{ $loop->iteration }}</td> {{-- $loop->iteration -> variable bawaan laravel --}}
-              <td>{{ $row->name }}</td>
-              <td>{{ $row->description }}</td>
-              <td>
-                <a href="{{ route('example.edit', $row) }}" class="waves-effect waves-light btn yellow darken-3 white-text">Edit</a>
-                <a href="{{ route('example.destroy', $row) }}" class="waves-effect waves-light btn pink white-text">Delete</a>
-              </td>
-            @endforeach
+            @if (count($example))
+              @foreach ($example as $row)
+                <td>{{ $loop->iteration }}</td> {{-- $loop->iteration -> variable bawaan laravel --}}
+                <td>{{ $row->name }}</td>
+                <td>{{ $row->description }}</td>
+                <td>
+                  <a href="{{ route('example.edit', $row) }}" class="waves-effect waves-light btn yellow darken-3 white-text">Edit</a>
+                  <a href="{{ route('example.destroy', $row) }}" class="waves-effect waves-light btn pink white-text">Delete</a>
+                </td>
+              @endforeach
+            @else
+                <tr>
+                  <td class="center-align" colspan="4">DATA EMPTY</td>
+                </tr>
+            @endif
           </tbody>
         </table>
       </div> 
